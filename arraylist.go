@@ -10,14 +10,10 @@ type ArrayList struct {
 	size      int
 }
 
-// CreateArrayList creats an array list with default of capacity 50.
-func CreateArrayList(capacity ...int) *ArrayList {
-	cap := 50
-	if len(capacity) > 0 {
-		cap = capacity[0]
-	}
+// CreateArrayList creates an array list.
+func CreateArrayList() *ArrayList {
 	return &ArrayList{
-		arrayList: make([]Track, cap),
+		arrayList: make([]Track, 0),
 		size:      0,
 	}
 }
@@ -51,24 +47,22 @@ func (a *ArrayList) Add(track Track, idx int) {
 }
 
 // RemoveAtIndex removes the element at a specified index.
-func (a *ArrayList) RemoveAtIndex(idx int) *Track {
-	target := a.arrayList[idx]
+func (a *ArrayList) RemoveAtIndex(idx int) {
 	a.arrayList = append(a.arrayList[:idx], a.arrayList[idx+1:]...)
 	a.decrementSize()
-	return &target
 }
 
-// Remove removes the first occurence of track from the ArrayList. Returns the removed track, or none if not found.
-func (a *ArrayList) Remove(track Track) *Track {
-	var target Track
+// Remove removes the first occurence of track from the ArrayList. Returns the index of specified element, or none if not found.
+func (a *ArrayList) Remove(track Track) int {
+	var target int
 	for i, t := range a.arrayList {
 		if t == track {
-			target = t
+			target = i
 			a.RemoveAtIndex(i)
 			break
 		}
 	}
-	return &target
+	return target
 }
 
 // Clear removes all elements from the ArrayList and resets its size to 0.
@@ -85,6 +79,11 @@ func (a *ArrayList) Get(idx int) *Track {
 // GetSize returns the size of this ArrayList.
 func (a *ArrayList) GetSize() int {
 	return a.size
+}
+
+// IsEmpty checks if the ArrayList is empty or not.
+func (a *ArrayList) IsEmpty() bool {
+	return a.GetSize() == 0
 }
 
 // String returns a string representation of the ArrayList.
