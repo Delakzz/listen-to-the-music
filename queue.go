@@ -1,5 +1,7 @@
 package main
 
+var MainQueue = CreateQueue()
+
 type Queue struct {
 	ArrayList
 }
