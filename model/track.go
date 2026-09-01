@@ -21,31 +21,10 @@ func (t *Track) SetArtist(artist string) {
 	t.Artist = artist
 }
 
-func (t *Track) Equals(other Track) bool {
+func (t *Track) IsEqual(other Track) bool {
 	return t.Title == other.Title && t.Artist == other.Artist
 }
 
 func (t *Track) String() string {
 	return t.Title + " by " + t.Artist
-}
-
-func (t *Track) IsEmpty() bool {
-	return t.Title == "" && t.Artist == ""
-}
-
-func (t *Track) Copy() Track {
-	return Track{
-		Title:  t.Title,
-		Artist: t.Artist,
-	}
-}
-
-func (t *Track) UpdateFrom(other Track) {
-	t.Title = other.Title
-	t.Artist = other.Artist
-}
-
-func (t *Track) Clear() {
-	t.Title = ""
-	t.Artist = ""
 }
