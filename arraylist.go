@@ -51,15 +51,15 @@ func (a *ArrayList) Add(track Track, idx int) {
 }
 
 // RemoveAtIndex removes the element at a specified index.
-func (a *ArrayList) RemoveAtIndex(idx int) Track {
+func (a *ArrayList) RemoveAtIndex(idx int) *Track {
 	target := a.arrayList[idx]
 	a.arrayList = append(a.arrayList[:idx], a.arrayList[idx+1:]...)
 	a.decrementSize()
-	return target
+	return &target
 }
 
 // Remove removes the first occurence of track from the ArrayList. Returns the removed track, or none if not found.
-func (a *ArrayList) Remove(track Track) Track {
+func (a *ArrayList) Remove(track Track) *Track {
 	var target Track
 	for i, t := range a.arrayList {
 		if t == track {
@@ -68,12 +68,18 @@ func (a *ArrayList) Remove(track Track) Track {
 			break
 		}
 	}
-	return target
+	return &target
+}
+
+// Clear removes all elements from the ArrayList and resets its size to 0.
+func (a *ArrayList) Clear() {
+	a.arrayList = a.arrayList[:0]
+	a.size = 0
 }
 
 // Get gets the element at the specified index.
-func (a *ArrayList) Get(idx int) Track {
-	return a.arrayList[idx]
+func (a *ArrayList) Get(idx int) *Track {
+	return &a.arrayList[idx]
 }
 
 // GetSize returns the size of this ArrayList.
