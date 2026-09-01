@@ -1,5 +1,10 @@
 package main
 
+import (
+	"fmt"
+	"strings"
+)
+
 type ArrayList struct {
 	arrayList []Track
 	size      int
@@ -64,4 +69,31 @@ func (a *ArrayList) Remove(track Track) Track {
 		}
 	}
 	return target
+}
+
+// Get gets the element at the specified index.
+func (a *ArrayList) Get(idx int) Track {
+	return a.arrayList[idx]
+}
+
+// GetSize returns the size of this ArrayList.
+func (a *ArrayList) GetSize() int {
+	return a.size
+}
+
+// String returns a string representation of the ArrayList.
+func (a *ArrayList) String() string {
+	if a.size == 0 {
+		return "This list is empty..."
+	}
+	var sb strings.Builder
+	sb.WriteString("[")
+	for i := 0; i < a.size; i++ {
+		sb.WriteString(fmt.Sprintf("%v", a.arrayList[i]))
+		if i+i != a.size {
+			sb.WriteString(",")
+		}
+	}
+	sb.WriteString("]")
+	return sb.String()
 }
