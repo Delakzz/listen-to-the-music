@@ -30,5 +30,18 @@ package main
 // }
 
 func main() {
+	t1 := Track{Title: "Life Puzzle", Artist: "Arthur Nery"}
+	t2 := Track{Title: "I Gotchu", Artist: "Arthur Nery"}
+	t3 := Track{Title: "Tahanan", Artist: "Adie"}
+	t4 := Track{Title: "Paraluman", Artist: "Adie"}
+	t5 := Track{Title: "Who Knows", Artist: "Daniel Caesar"}
+	t6 := Track{Title: "Pag-Ibig ay Kanibalismo II", Artist: "fitterkarma"}
+
+	MainQueue.Enqueue(t1)
+	MainQueue.Enqueue(t2)
+	MainQueue.Enqueue(t3)
+	MainQueue.Enqueue(t4)
+	MainQueue.Enqueue(t5)
+	MainQueue.Enqueue(t6)
 	MainMenu.Run()
 }
