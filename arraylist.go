@@ -89,16 +89,12 @@ func (a *ArrayList) IsEmpty() bool {
 // String returns a string representation of the ArrayList.
 func (a *ArrayList) String() string {
 	if a.size == 0 {
-		return "This list is empty..."
+		return "\nThis list is empty...\n"
 	}
 	var sb strings.Builder
-	sb.WriteString("[")
+	sb.WriteString("\n")
 	for i := 0; i < a.size; i++ {
-		sb.WriteString(fmt.Sprintf("%v", a.arrayList[i]))
-		if i+i != a.size {
-			sb.WriteString(",")
-		}
+		sb.WriteString(fmt.Sprintf("%v\n", a.arrayList[i].String()))
 	}
-	sb.WriteString("]")
 	return sb.String()
 }
