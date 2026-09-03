@@ -35,8 +35,3 @@ func ReadInt(prompt string, min, max int) int {
 		return value
 	}
 }
-
-// IsValidID reports whether the given ID is valid (positive).
-func IsValidID(id int) bool {
-	return id > 0
-}
