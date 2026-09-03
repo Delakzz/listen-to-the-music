@@ -4,7 +4,7 @@ import "fmt"
 
 type MenuItem struct {
 	Label  string
-	Action func()
+	Action func() bool
 }
 
 type Menu struct {
@@ -23,10 +23,17 @@ func (m Menu) Run() {
 	for {
 		m.Show()
 		choice := ReadInt("Option", 1, len(m.Items))
-		m.Items[choice-1].Action()
+		keepGoing := m.Items[choice-1].Action()
+		if !keepGoing {
+			return
+		}
 	}
 }
 
 func showHeader(title string) {
 	fmt.Printf("<-------- %s -------->\n", title)
+}
+
+func handleBack() bool {
+	return false
 }
