@@ -105,7 +105,7 @@ func (p *Playlist) AddToQueue(track Track) {
 
 // createPlaylistQueue creats a queue of tracks from a given index from the playlist to the last index, exclusively.
 func (p *Playlist) createPlaylistQueue(start, stop int) {
-	for _, track := range p.arrayList[start:stop] {
+	for _, track := range p.ArrayList.arrayList[start:stop] {
 		p.queue.Enqueue(track)
 	}
 }
@@ -148,14 +148,20 @@ func (p *Playlist) GetIndexOfTrack(track Track) int {
 
 // NextTrack plays the next track on queue. Stops playing if no more track left.
 func (p *Playlist) NextTrack() {
-	if p.queue.GetSize() == 1 {
+	track := p.queue.Dequeue()
+
+	if p.queue.IsEmpty() && !p.IsAllRepeat() {
 		p.StopPlay()
 	}
 
-	track := p.queue.Dequeue()
-
 	if p.IsAllRepeat() {
 		p.queue.Enqueue(*track)
+	}
+
+	if p.queue.GetHead() != nil {
+		fmt.Printf("\n%s is now playing!\n", p.queue.GetHead().String())
+	} else {
+		fmt.Println("\nThe queue is empty!")
 	}
 }
 
@@ -166,12 +172,12 @@ func (p *Playlist) PlaylistQueue() string {
 	}
 
 	var sb strings.Builder
-	sb.WriteString(fmt.Sprintf("Currently playing: %s", p.queue.GetHead().String()))
-	sb.WriteString("<---- Next on Queue ---->")
+	sb.WriteString(fmt.Sprintf("\nCurrently playing: %s\n", p.queue.GetHead().String()))
+	sb.WriteString("\n<---- Next on Queue ---->\n")
 	for i := 1; i < p.queue.size; i++ {
 		sb.WriteString(fmt.Sprintf("%v\n", p.queue.arrayList[i].String()))
 	}
-	sb.WriteString("<---- End of Queue ---->")
+	sb.WriteString("<---- End of Queue ---->\n")
 	return sb.String()
 }
 
