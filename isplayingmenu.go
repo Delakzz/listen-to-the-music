@@ -13,15 +13,18 @@ var IsPlayingMenu = Menu{
 }
 
 func handleStop() bool {
-	IsPlaying = false
+	Pl.StopPlay()
 	fmt.Println("The playlist stopped playing!")
-	return true
+	return false
 }
 
 func handleViewQueue() bool {
+	fmt.Println(Pl.PlaylistQueue())
+	ReadString("Press enter to continue")
 	return true
 }
 
 func handleNextTrack() bool {
+	Pl.NextTrack()
 	return true
 }
