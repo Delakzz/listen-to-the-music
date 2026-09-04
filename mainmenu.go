@@ -20,21 +20,24 @@ func handleAddTrack() bool {
 	artist := ReadString("Track Artist")
 	track := Track{Title: title, Artist: artist}
 	MainQueue.Enqueue(track)
-	fmt.Println("Track has been added to the queue!")
+	fmt.Print("Track has been added to the queue!")
 	return true
 }
 
 func handleViewPlaylist() bool {
-	fmt.Println()
 	showHeader("My Playlist")
-	fmt.Println(MainQueue.String())
+	fmt.Print(Pl.String())
 	showHeader("End")
-	scanner.Scan()
+	ReadString("Press enter to continue")
 	return true
 }
 
 func handlePlayPlaylist() bool {
-	PlayPlaylistMenu.Run()
+	if Pl.IsPlaying() {
+		IsPlayingMenu.Run()
+	} else {
+		PlayPlaylistMenu.Run()
+	}
 	return true
 }
 
