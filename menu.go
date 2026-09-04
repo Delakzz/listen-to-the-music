@@ -31,7 +31,7 @@ func (m Menu) Run() {
 }
 
 func showHeader(title string) {
-	fmt.Printf("<-------- %s -------->\n", title)
+	fmt.Printf("\n<-------- %s -------->\n", title)
 }
 
 func handleBack() bool {
