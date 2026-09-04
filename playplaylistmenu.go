@@ -1,6 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"math/rand"
+)
 
 var PlayPlaylistMenu = Menu{
 	Title: "Play Setup",
@@ -12,22 +15,27 @@ var PlayPlaylistMenu = Menu{
 	},
 }
 
-var IsPlaying = false
-var CurrentQueue Queue
-
 func handleShuffle() bool {
-	showHeader("Shuffle Config")
+	ShuffleConfigMenu.Run()
 	return true
 }
 
 func handleRepeat() bool {
-	showHeader("Repeat Config")
+	RepeatConfigMenu.Run()
 	return true
 }
 
 func handlePlay() bool {
-	IsPlaying = true
-	// copy(MainQueue.arrayList, CurrentQueue)
-	fmt.Println("Playlist is now being played!")
-	return true
+	Pl.playing = true
+	Pl.createPlaylistQueue(0, Pl.ArrayList.GetSize())
+
+	// shuffle bitch
+	if Pl.shuffled {
+		rand.Shuffle(Pl.queue.GetSize(), func(i, j int) {
+			Pl.queue.arrayList[i], Pl.queue.arrayList[j] = Pl.queue.arrayList[j], Pl.queue.arrayList[i]
+		})
+	}
+
+	fmt.Println("\nPlaylist is now being played!")
+	return false
 }
