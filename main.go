@@ -29,6 +29,14 @@ package main
 // 	},
 // }
 
+var Pl = Playlist{
+	name:     "My Playlist",
+	shuffled: false,
+	queue:    &Queue{},
+	repeat:   0,
+	playing:  false,
+}
+
 func main() {
 	t1 := Track{Title: "Life Puzzle", Artist: "Arthur Nery"}
 	t2 := Track{Title: "I Gotchu", Artist: "Arthur Nery"}
@@ -37,11 +45,14 @@ func main() {
 	t5 := Track{Title: "Who Knows", Artist: "Daniel Caesar"}
 	t6 := Track{Title: "Pag-Ibig ay Kanibalismo II", Artist: "fitterkarma"}
 
-	MainQueue.Enqueue(t1)
-	MainQueue.Enqueue(t2)
-	MainQueue.Enqueue(t3)
-	MainQueue.Enqueue(t4)
-	MainQueue.Enqueue(t5)
-	MainQueue.Enqueue(t6)
+	Pl.AddToPlaylist(t1)
+	Pl.AddToPlaylist(t2)
+	Pl.AddToPlaylist(t3)
+	Pl.AddToPlaylist(t4)
+	Pl.AddToPlaylist(t5)
+	Pl.AddToPlaylist(t6)
+
+	// fmt.Println(pl.String())
+
 	MainMenu.Run()
 }
