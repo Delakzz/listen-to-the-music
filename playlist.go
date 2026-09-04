@@ -176,5 +176,5 @@ func (p *Playlist) PlaylistQueue() string {
 }
 
 func (p *Playlist) String() string {
-	return p.String()
+	return p.ArrayList.String()
 }
