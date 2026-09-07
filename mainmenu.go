@@ -19,8 +19,8 @@ func handleAddTrack() bool {
 	title := ReadString("Title of the track")
 	artist := ReadString("Track Artist")
 	track := Track{Title: title, Artist: artist}
-	MainQueue.Enqueue(track)
-	fmt.Print("Track has been added to the queue!")
+	Pl.AddToPlaylist(track)
+	fmt.Print("Track has been added to the playlist!")
 	return true
 }
 
